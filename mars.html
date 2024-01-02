@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@v0.160.0/build/three.module.js"
+          }
+        }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / 3 / window.innerHeight, 0.1, 1000 );
+
+        const renderer = new THREE.WebGLRenderer({alpha: true});
+        renderer.setSize( window.innerWidth/3, window.innerHeight );
+        document.querySelector('#canvas-container').appendChild(renderer.domElement);
+        
+        camera.position.z = 5;
+
+        const loader = new THREE.TextureLoader();
+
+        loader.load('textures/mars.jpg', txt => {
+            const sphere = new THREE.Mesh( new THREE.SphereGeometry( 1, 32, 16 ),
+                new THREE.MeshBasicMaterial({map: txt}));
+            scene.add( sphere );
+         
+            function animate() {
+                requestAnimationFrame(animate);
+
+                sphere.rotation.y += 0.005;
+                sphere.rotation.z += 0.001;
+                renderer.render( scene, camera );
+            }
+            animate();
+        })
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-image: linear-gradient(rgb(20, 20, 20), rgb(50, 50, 50));
+        }
+
+        #content-container {
+            flex-grow: 1;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+            margin-top: 50px;
+        }
+
+        hr {
+            width: 40%;
+            margin: auto;
+        }
+
+        p {
+            width: 50%;
+            margin: 30px 0;
+        }
+
+        a {
+            text-decoration: none;
+            background-color: white;
+            color: black;
+            padding: 20px 50px;
+            text-align: center;
+            border-radius: 15px;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <title>Mars</title>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <div id="content-container">
+        <h1>מאדים</h1>
+        <hr>
+        <div id="info">
+            <p>מאדים (בלטינית: Mars, בתעתיק מדויק: מַארס) הוא כוכב הלכת הרביעי במערכת השמש. מסלולו הוא השני הקרוב ביותר למסלול כדור הארץ (אחרי נוגה) והוא כוכב הלכת השני הקטן ביותר, גדול רק מכוכב חמה. צבע פניו של מאדים אדמדם בשל ריבוי תחמוצות ברזל בקרקעו, ומכאן שמו העברי והכינוי "כוכב הלכת האדום". סמלו מייצג את המגן והחנית של האל מרס: עיגול עם חץ.</p>
+            <ul>
+                <li><p>קוטרו של מאדים 6,721 ק"מ (כחצי מקוטרו של כדור הארץ). הוא משלים סיבוב אחד סביב צירו אחת ל־24 שעות ו־37 דקות, והקפה אחת סביב השמש כל 686.98 יום במהירות ממוצעת של 24.13 ק"מ לשנייה. פני מאדים מלאים במכתשים. מרבית הקרח בקטביו הוא קרח יבש הנוצר מקפיאת פחמן דו-חמצני. חוקרים מעריכים כי ייתכן שיורד שם שלג.</p></li>
+                <li><p>למאדים שני ירחים, פובוס ודימוס, ושניהם קטנים ובעלי צורה לא־סדירה. משערים שאלו אסטרואידים שנלכדו על ידי כוח המשיכה של מאדים. במאדים נמצא ההר הגבוה ביותר במערכת השמש, הר הגעש אולימפוס מונס - גובהו 21 ק"מ. בנוסף על מאדים נמצא קניון ואליס מארינריס, אשר אורכו כ-4,000 ק"מ ורוחבו 200 ק"מ.</p></li>
+                <li><p>מאדים זוכה להתעניינות רבה בשל קרבתו היחסית לכדור הארץ והסיכוי להפוך אותו לכוכב לכת ארצי שישררו בו תנאים שיאפשרו לבני־אדם להגיע אליו בעתיד ואף להשתכן בו. כמו כן, שני הקטבים של מאדים מכוסים מים קפואים. עובדה זו מגבירה את התקוות לאיתור עקבות של חיים מיקרוסקופיים בעבר. למאדים נשלחו עד כה מספר גשושיות בלתי מאוישות שסיפקו מידע רב. אף שטרם נשלחו אסטרונאוטים אל מאדים, סוכנויות חלל שונות חוקרות במרץ את האפשרות לבצע משימה מאוישת למאדים בעשורים הקרובים.</p></li>
+                <li><p>צפיפותו הממוצעת של מאדים 3.95 גרם לסמ"ק. למאדים רק רבע מפני השטח של כדור הארץ ומסתו היא רק עשירית ממסתו של כדור הארץ. כוח המשיכה על פני מאדים הוא כ־38% מכוח המשיכה על פני כדור הארץ.</p></li>
+                <li><p>השינוי בגודלן של המדבריות על פני מאדים ובצורתן נעוץ ברוחות העזות המזיזות ענני חול גדולים ממקום למקום. ציר הסיבוב של מאדים נטוי בזווית של 25 מעלות ביחס למישור ההקפה שלו סביב השמש. האטמוספירה עליו דלילה מאוד וכמות המים בה נמוכה. בזמנים קדומים, כמות אדי המים באטמוספירה שלו הייתה גדולה יותר, אלא שעקב מחסור באוקיינוסים וצורות חיים שיקלטו את אדי המים והחמצן, נקלטו אדי המים והחמצן בקרקע של מאדים, העשירה בברזל, הברזל התחמצן, ומכאן צבעו האדמדם של כוכב הלכת.</p></li>
+            </ul>
+        </div>
+        <a href="index.html">דף בית</a>
+    </div>
+</body>
+</html>

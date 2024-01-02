@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@v0.160.0/build/three.module.js"
+          }
+        }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / 3 / window.innerHeight, 0.1, 1000 );
+
+        const renderer = new THREE.WebGLRenderer({alpha: true});
+        renderer.setSize( window.innerWidth/3, window.innerHeight );
+        document.querySelector('#canvas-container').appendChild(renderer.domElement);
+        
+        camera.position.z = 5;
+
+        const loader = new THREE.TextureLoader();
+
+        loader.load('textures/earth.jpg', txt => {
+            const sphere = new THREE.Mesh( new THREE.SphereGeometry( 1.3, 32, 16 ),
+                new THREE.MeshBasicMaterial({map: txt}));
+            scene.add( sphere );
+         
+            function animate() {
+                requestAnimationFrame(animate);
+
+                sphere.rotation.y += 0.005;
+                sphere.rotation.z += 0.001;
+                renderer.render( scene, camera );
+            }
+            animate();
+        })
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-image: linear-gradient(rgb(20, 20, 20), rgb(50, 50, 50));
+        }
+
+        #content-container {
+            flex-grow: 1;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+            margin-top: 50px;
+        }
+
+        hr {
+            width: 40%;
+            margin: auto;
+        }
+
+        p {
+            width: 50%;
+            margin: 30px 0;
+        }
+
+        a {
+            text-decoration: none;
+            background-color: white;
+            color: black;
+            padding: 20px 50px;
+            text-align: center;
+            border-radius: 15px;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <title>Earth</title>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <div id="content-container">
+        <h1>כדור הארץ</h1>
+        <hr>
+        <div id="info">
+            <p>כדור הארץ (או ארץ; מכונה גם "העולם") הוא כוכב הלכת השלישי במערכת השמש, החמישי בגודלו במערכת, והגדול מבין ארבעת כוכבי הלכת הארציים. על פי הערכות מדעיות, הוא נוצר לפני כ-4.54 מיליארד שנים וכ-20–30 מיליון שנים לאחר מכן רכש את הלוויין הטבעי היחיד סביבו, הירח. כמיליארד שנים לאחר היווצרותו הופיעו בו התאים החיים הראשונים. כדור הארץ הוא גרם השמיים היחיד שידוע על קיום חיים בו.</p>
+
+            <ul>
+                <li><p>כדור הארץ הוא כדור הפחוס בקטבים (ספרואיד אובלי), עם קוטר ממוצע של 12,742 ק"מ בקירוב. כיוון שכדור הארץ פחוס בקטבים, הרדיוס לכיוון הקטבים קטן מעט יותר מהרדיוס לכיוון קו המשווה, בקטבים 6,356.8 ק"מ, ובקו המשווה 6,378.1 ק"מ. בהתאמה, היקף כדור הארץ סביב קו המשווה הוא 40,075.016 ק"מ, ואילו סביב קווי האורך צפון-דרום הוא 40,007.86 ק"מ. 29.2% מפני כדור הארץ הם יבשה והשאר ימים.</p></li>
+                <li><p>כדור הארץ מסתובב סביב צירו במהירות משיקית של כ-0.5 ק"מ לשנייה ונע סביב השמש במהירות של כ-29 ק"מ לשנייה. כדור הארץ סובב סביב השמש במסלול אליפטי. השמש מצויה באחד ממוקדי האליפסה. הנקודה הקרובה ביותר לשמש נקראת פריהליון והנקודה הרחוקה ביותר נקראת אפהליון.</p></li>
+                <li><p>עונות השנה נגרמות בשל ההטיה של ציר הסיבוב של כדור הארץ בזווית של 23.5 מעלות מן האנך למישור סיבובו סביב השמש (מישור המילקה), ולכן זווית פגיעת קרני השמש משתנה במשך השנה. כלומר, כאשר כדור הארץ סובב סביב השמש, נטייתו גורמת לכך שבחצי המסלול של סיבוב הארץ סביב השמש חצי הכדור הצפוני מקבל יותר שעות שמש מחצי הכדור הדרומי, כשהאזורים מעבר לחוג הקוטב הדרומי מצויים בחשכה מוחלטת כל הזמן, ובחצי המסלול המשלים של סיבוב הארץ סביב השמש המצב הפוך. משום כך, לא יתקיימו קיץ וחורף באותו הזמן גם בחצי הצפוני של כדור הארץ וגם בחצי הדרומי.</p></li>
+                <li><p>היממה מוגדרת בכדור הארץ על פי צפיית מהלך השמש בשמים, כאשר מחזור אחד של התנועה היומית של השמש על פני כיפת השמים נמדדת באופן הבא: פרק הזמן החולף מצהרי יום אחד למשנהו או בין שני מעברים עוקבים של השמש על קו הצהריים. עם המצאת השעון, נקבע משך היממה ל-24 שעות, אולם זמן זה אינו מדויק ומשתנה בין עונות השנה. על-פי הגדרת היחידה שנייה המקובלת, קיום הזמן שאורך לכדור הארץ להסתובב צירית הוא 23.934 שעות. זמן סיבוב כדור הארץ סביב השמש הוא 365.256366 ימים (365 ימים, 6 שעות, 9 דקות, 10 שניות ו-2 מאיות), זמן זה נקרא שנה.</p></li>
+            </ul>
+        </div>
+        <a href="index.html">דף בית</a>
+    </div>
+</body>
+</html>

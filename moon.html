@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@v0.160.0/build/three.module.js"
+          }
+        }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / 3 / window.innerHeight, 0.1, 1000 );
+
+        const renderer = new THREE.WebGLRenderer({alpha: true});
+        renderer.setSize( window.innerWidth/3, window.innerHeight );
+        document.querySelector('#canvas-container').appendChild(renderer.domElement);
+        
+        camera.position.z = 5;
+
+        const loader = new THREE.TextureLoader();
+
+        loader.load('textures/moon.jpg', txt => {
+            const sphere = new THREE.Mesh( new THREE.SphereGeometry( .6, 32, 16 ),
+                new THREE.MeshBasicMaterial({map: txt}));
+            scene.add( sphere );
+         
+            function animate() {
+                requestAnimationFrame(animate);
+
+                sphere.rotation.y += 0.005;
+                sphere.rotation.z += 0.001;
+                renderer.render( scene, camera );
+            }
+            animate();
+        })
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-image: linear-gradient(rgb(20, 20, 20), rgb(50, 50, 50));
+        }
+
+        #content-container {
+            flex-grow: 1;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+            margin-top: 50px;
+        }
+
+        hr {
+            width: 40%;
+            margin: auto;
+        }
+
+        p {
+            width: 50%;
+            margin: 30px 0;
+        }
+
+        a {
+            text-decoration: none;
+            background-color: white;
+            color: black;
+            padding: 20px 50px;
+            text-align: center;
+            border-radius: 15px;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <title>The Moon</title>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <div id="content-container">
+        <h1>הירח</h1>
+        <hr>
+        <div id="info">
+            <p>הירח הוא הלוויין הטבעי היחיד של כדור הארץ. הוא נקרא גם לְבָנָה או סהר בעברית, ולונה (Luna) במינוח המדעי (בלטינית), וזאת כדי להבדילו מירחים של גורמי שמים אחרים. קוטרו 3,474 קילומטרים, מעט יותר מרבע קוטר כדור הארץ. הקרבה היחסית בגודל בין כדור הארץ לירחו היא נדירה. הגוף הנוסף היחיד במערכת השמש שיש לו ירח קרוב יחסית לגודלו שלו הוא כוכב הלכת הננסי פלוטו.</p>
+            <ul>
+                <li><p>על פי התאוריה המקובלת, הירח נוצר מהשברים שנשארו מהתנגשות בין כדור הארץ לגוף בגודל של כוכב הלכת מאדים, המכונה בשם תיאה, לפני כ-4.5 מיליארד שנים.</p></li>
+                <li><p>הודות לקרבתו הרבה של הירח לכדור הארץ ניתן לצפות בו בקלות ללא טלסקופ או משקפת, ואף להבחין במכתשים הרבים הפזורים עליו. בירח קל מאוד להבחין במהלך הלילה, ולעיתים קרובות ניתן להבחין בו גם במהלך היום. בשל קרבתו, הירח הוא גם גרם השמיים היחיד שבני אדם נשלחו אליו ושדרכה עליו רגל אנוש. ב-1959 שיגרה ברית המועצות שלוש חלליות לחקר הירח: לונה 1, לונה 2 ולונה 3. תוכנית אפולו האמריקנית הייתה התוכנית היחידה שבמסגרתה נשלחו חלליות מאוישות לירח. הנחיתה המאוישת הראשונה על הירח התבצעה במשימה אפולו 11 ביולי 1969, ועד 1972 בוצעו במסגרת התוכנית שש נחיתות מאוישות עליו, בהן היו 12 אסטרונאוטים בסך הכל. תוכנית ארטמיס היא תוכנית חלל מאוישת של ארצות הברית שמטרתה העיקרית היא הנחתת בני אדם על הירח ב־2025.</p></li>
+                <li><p>הירח מופיע באגדות ובסיפורים שונים במגוון רב של תרבויות, ולוחות שנה שונים מבוססים על מחזור הירח, כגון לוח השנה העברי המבוסס על שילוב של מחזור הירח ומחזור השמש, ולוח השנה המוסלמי המבוסס אך ורק על מחזור הירח.</p></li>
+            </ul>
+        </div>
+        <a href="index.html">דף בית</a>
+    </div>
+</body>
+</html>

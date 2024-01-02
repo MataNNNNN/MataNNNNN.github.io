@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@v0.160.0/build/three.module.js"
+          }
+        }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / 3 / window.innerHeight, 0.1, 1000 );
+
+        const renderer = new THREE.WebGLRenderer({alpha: true});
+        renderer.setSize( window.innerWidth/3, window.innerHeight );
+        document.querySelector('#canvas-container').appendChild(renderer.domElement);
+        
+        camera.position.z = 5;
+
+        const loader = new THREE.TextureLoader();
+
+        loader.load('textures/jupiter.jpg', txt => {
+            const sphere = new THREE.Mesh( new THREE.SphereGeometry( 2, 32, 16 ),
+                new THREE.MeshBasicMaterial({map: txt}));
+            scene.add( sphere );
+         
+            function animate() {
+                requestAnimationFrame(animate);
+
+                sphere.rotation.y += 0.005;
+                sphere.rotation.z += 0.001;
+                renderer.render( scene, camera );
+            }
+            animate();
+        })
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-image: linear-gradient(rgb(20, 20, 20), rgb(50, 50, 50));
+        }
+
+        #content-container {
+            flex-grow: 1;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+            margin-top: 50px;
+        }
+
+        hr {
+            width: 40%;
+            margin: auto;
+        }
+
+        p {
+            width: 50%;
+            margin: 30px 0;
+        }
+
+        a {
+            text-decoration: none;
+            background-color: white;
+            color: black;
+            padding: 20px 50px;
+            text-align: center;
+            border-radius: 15px;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <title>Jupiter</title>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <div id="content-container">
+        <h1>צדק</h1>
+        <hr>
+        <div id="info">
+            <p>צֶדֶק (בלועזית: Jupiter, יופיטר) הוא כוכב הלכת החמישי במרחקו מהשמש, וכוכב הלכת הגדול ביותר במערכת השמש. צדק הוא ענק גזים ומרבית מסתו היא מימן והליום. בדומה לכוכבי לכת גזיים אחרים במערכת השמש, לצדק יש מערכת טבעות ומערכת ירחים.</p>
+            <ul>
+                <li><p>צדק מוכר לאנושות לאורך כל ההיסטוריה של האסטרונומיה. הוא נראה בקלות בעין בלתי מזוינת בתצפית מכדור הארץ, והוא גרם השמים השלישי בבהירותו הנראית בשמי הלילה, אחרי הירח ונוגה.</p></li>
+                <li><p>קוטרו של צדק 142,984 ק"מ (בקו המשווה) וצפיפותו הממוצעת היא 1.33 גרם לסמ"ק. מסתו של צדק גדולה כמעט פי 2.5 ממסתם של כל שאר כוכבי הלכת במערכת השמש יחדיו. הוא מסיבי יותר מכדור הארץ פי 318, קוטרו גדול פי 11 מזה של כדור הארץ ונפחו גדול פי 1,300 מנפח כדור הארץ. אף על פי שצדק מרשים בגודלו, נתגלו כוכבי לכת מחוץ למערכת השמש להם מסות גדולות משמעותית.</p></li>
+                <li><p>לצדק קצב הסיבוב המהיר ביותר בין כוכבי הלכת במערכת השמש. זמן הסיבוב העצמי (אורך היממה) שלו הוא 9 שעות, 55 דקות ו־30 שניות בלבד. כתוצאה מכך, רדיוסו גדול יותר באזור קו המשווה וצורתו פחוסה; קל לראות זאת כשצופים בו בטלסקופ. אחד המאפיינים הבולטים בצדק הוא הכתם האדום הגדול, סערה שגדולה מכדור הארץ. כוכב הלכת מכוסה שכבת עננים באופן תמידי.</p></li>
+                <li><p>צדק הוא בדרך כלל העצם הרביעי בבהירותו ברקיע, לאחר השמש, הירח ונוגה; עם זאת בזמנים מסוימים מאדים נראה בהיר מצדק, ובפעמים אחרות צדק בהיר יותר מנוגה.</p></li>
+                <li><p>את צדק ניתן לחלק לשלושה חלקים עיקריים: הליבה, החלק הפנימי והחלק החיצוני. משערים שהליבה מכילה ניקל וברזל, רדיוסה 10,000 ק"מ ומעליה מצויה שכבת מימן במצב של נוזל מתכתי. החלק שמעל ליבת המימן המתכתי הוא החלק הגזי של צדק ואנו רואים את חלקו החיצוני. על פני צדק נראות חגורות עננים כהות וכתם אדום גדול. צדק משלים הקפה סביב השמש אחת ל־11.86 שנה[7] במהירות ממוצעת של 13.06 ק"מ לשנייה. צדק מוקף בטבעות והטבעת העיקרית מצויה במרחק של 1.72 עד 1.81 רדיוסי צדק והיא מכילה בעיקר חלקיקי אבק הקטנים ממ"מ.</p></li>
+            </ul>
+        </div>
+        <a href="index.html">דף בית</a>
+    </div>
+</body>
+</html>
